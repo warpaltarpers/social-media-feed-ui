@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import avatar from '../tpdne1.jpg'
 import { FaCommentDots, FaEllipsisH, FaHeart, FaMapMarkerAlt, FaPencilAlt, FaTrash } from 'react-icons/fa'
-import { v4 as uuidv4 } from 'uuid';
 import TimeAgo from 'timeago-react';
 
 const FeedCard = (props) => {
@@ -143,7 +142,6 @@ const FeedCard = (props) => {
               <div>
                 {
                   commentList.map((data) => {
-                    data.id = uuidv4();
                     return (
                       <>
                         <div className='flex items-center px-4 pb-4 rounded-b-lg bg-gray-100 space-x-4'>
