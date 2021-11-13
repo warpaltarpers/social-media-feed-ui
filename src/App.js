@@ -34,8 +34,10 @@ function App() {
   }
   
   const addPostToFeed = content => {
+    let k = uuidv4();
     const newPost = {
-      key: uuidv4(),
+      key: k,
+      id: k,
       name: 'Fake Guy',
       location: 'OH, USA',
       timestamp: getTimestamp(),
@@ -47,9 +49,11 @@ function App() {
     setPosts([newPost, ...posts])
   }
   
-  const addCommentToPost = (comment, key) => {
+  const addCommentToPost = (comment, pId) => {
+    let k = uuidv4();
     const newComment = {
-      key: uuidv4(),
+      key: k,
+      id: k,
       name: 'Fake Guy',
       title: 'Bot Lane',
       timestamp: getTimestamp(),
@@ -59,7 +63,9 @@ function App() {
     }
     setPosts(prevState =>
       prevState.map(post => {
-        if(post.key === key) {
+        if(post.id === pId) {
+          console.log(`Map ID: ${post.id}`)
+          console.log(`Passed ID: ${pId}`)
           return {
             ...post,
             comments: [newComment, ...post.comments]
@@ -70,13 +76,13 @@ function App() {
     )
   }
   
-  const deleteComment = (pKey, cKey) => {
+  const deleteComment = (pId, cId) => {
     setPosts(prevState =>
       prevState.map(post => {
-        if(post.key === pKey) {
+        if(post.id === pId) {
           post.comments = [
             ...post.comments.filter(c => {
-              return c.key !== cKey
+              return c.id !== cId
             })
           ]
           return {
@@ -88,13 +94,13 @@ function App() {
     )
   }
   
-  const likeComment = (pKey, cKey) => {
+  const likeComment = (pId, cId) => {
     setPosts(prevState =>
       prevState.map(post => {
-        if(post.key === pKey) {
+        if(post.id === pId) {
           post.comments = [
             ...post.comments.map(c => {
-              if(c.key === cKey) {
+              if(c.id === cId) {
                 c.isLiked = !c.isLiked
                 return {
                   ...c
@@ -112,10 +118,10 @@ function App() {
     )
   }
   
-  const likePost = pKey => {
+  const likePost = pId => {
     setPosts(prevState =>
       prevState.map(post => {
-        if (post.key === pKey) {
+        if (post.id === pId) {
           return {
             ...post,
             isLiked: !post.isLiked
@@ -135,6 +141,7 @@ function App() {
         posts.map((data) => {
           return <FeedCard 
             key={uuidv4()}
+            id={data.id}
             name={data.name}
             location={data.location}
             timestamp={data.timestamp}

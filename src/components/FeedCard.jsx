@@ -1,38 +1,35 @@
 import React, { useState } from 'react'
 import avatar from '../tpdne1.jpg'
 import { FaCommentDots, FaEllipsisH, FaHeart, FaMapMarkerAlt, FaPencilAlt, FaTrash } from 'react-icons/fa'
-import { v4 as uuidv4 } from 'uuid';
 import TimeAgo from 'timeago-react';
 
 const FeedCard = (props) => {
   const [comment, setComment] = useState();
-  const [commentList, setCommentList] = useState(props.comments);
-  const [key, setKey] = useState(props.key);
 
   const onChange = e => {
     setComment(e.target.value)
   }
 
   function handlePostLike() {
-    props.handleLikeProps(key)
+    props.handleLikeProps(props.id)
   }
 
   const handleCommentPost = e => {
     e.preventDefault()
     if (comment.trim()) {
-      props.addCommentProps(comment, key)
+      props.addCommentProps(comment, props.id)
       setComment('')
     } else {
       alert('You did not enter anything. Please enter text before submitting your comment.')
     }
   }
 
-  function handleCommentLike(commentKey) {
-    props.handleCommentLikeProps(key, commentKey)
+  function handleCommentLike(cId) {
+    props.handleCommentLikeProps(props.id, cId)
   }
 
-  function handleCommentDelete(commentKey) {
-    props.handleCommentDeleteProps(key, commentKey)
+  function handleCommentDelete(cId) {
+    props.handleCommentDeleteProps(props.id, cId)
   }
 
   return (
@@ -76,12 +73,12 @@ const FeedCard = (props) => {
         <div className='space-x-2 pl-4 pb-2 flex text-gray-600 text-sm'>
           <p>{props.isLiked ? props.likes + 1 : props.likes} Likes</p>
           <p>•</p>
-          <p>{commentList.length} Comments</p>
+          <p>{props.comments.length} Comments</p>
         </div>
 
         {/* Lower Fourth - Like & Comment Buttons + Feed */}
         {
-          commentList.length === 0
+          props.comments.length === 0
             // No comments
             ? <div className='flex justify-start pl-2 pb-3 bg-gray-100 rounded-b-lg'>
               {/* Like Button */}
@@ -142,8 +139,7 @@ const FeedCard = (props) => {
               {/* Comment Feed */}
               <div>
                 {
-                  commentList.map((data) => {
-                    data.key = uuidv4();
+                  props.comments.map((data) => {
                     return (
                       <>
                         <div className='flex items-center px-4 pb-4 rounded-b-lg bg-gray-100 space-x-4'>
@@ -170,7 +166,7 @@ const FeedCard = (props) => {
                                     ? 'flex items-center space-x-1 rounded-full bg-transparent text-red-500 duration-150'
                                     : 'flex items-center space-x-1 rounded-full bg-transparent text-gray-500 hover:text-red-500 duration-150'
                                 }
-                                  onClick={() => handleCommentLike(data.key)}
+                                  onClick={() => handleCommentLike(data.id)}
                                 >
                                   <FaHeart className='fill-current' />
                                   <p>{data.isLiked ? 'Liked' : 'Like'}</p>
@@ -180,7 +176,7 @@ const FeedCard = (props) => {
                                   <FaPencilAlt className='fill-current' />
                                   <p>Edit</p>
                                 </button>
-                                <button className='flex items-center space-x-1 rounded-full bg-transparent text-gray-500' onClick={() => handleCommentDelete(data.key)}
+                                <button className='flex items-center space-x-1 rounded-full bg-transparent text-gray-500' onClick={() => handleCommentDelete(data.id)}
                                 >
                                   <FaTrash className='fill-current' />
                                   <p>Delete</p>
