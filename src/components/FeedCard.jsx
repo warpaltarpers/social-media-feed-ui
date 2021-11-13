@@ -7,32 +7,32 @@ import TimeAgo from 'timeago-react';
 const FeedCard = (props) => {
   const [comment, setComment] = useState();
   const [commentList, setCommentList] = useState(props.comments);
-  const [key, setKey] = useState(props.key);
+  const [id, setId] = useState(props.id);
 
   const onChange = e => {
     setComment(e.target.value)
   }
 
   function handlePostLike() {
-    props.handleLikeProps(key)
+    props.handleLikeProps(id)
   }
 
   const handleCommentPost = e => {
     e.preventDefault()
     if (comment.trim()) {
-      props.addCommentProps(comment, key)
+      props.addCommentProps(comment, id)
       setComment('')
     } else {
       alert('You did not enter anything. Please enter text before submitting your comment.')
     }
   }
 
-  function handleCommentLike(commentKey) {
-    props.handleCommentLikeProps(key, commentKey)
+  function handleCommentLike(cId) {
+    props.handleCommentLikeProps(id, cId)
   }
 
-  function handleCommentDelete(commentKey) {
-    props.handleCommentDeleteProps(key, commentKey)
+  function handleCommentDelete(cId) {
+    props.handleCommentDeleteProps(id, cId)
   }
 
   return (
@@ -143,7 +143,7 @@ const FeedCard = (props) => {
               <div>
                 {
                   commentList.map((data) => {
-                    data.key = uuidv4();
+                    data.id = uuidv4();
                     return (
                       <>
                         <div className='flex items-center px-4 pb-4 rounded-b-lg bg-gray-100 space-x-4'>
@@ -170,7 +170,7 @@ const FeedCard = (props) => {
                                     ? 'flex items-center space-x-1 rounded-full bg-transparent text-red-500 duration-150'
                                     : 'flex items-center space-x-1 rounded-full bg-transparent text-gray-500 hover:text-red-500 duration-150'
                                 }
-                                  onClick={() => handleCommentLike(data.key)}
+                                  onClick={() => handleCommentLike(data.id)}
                                 >
                                   <FaHeart className='fill-current' />
                                   <p>{data.isLiked ? 'Liked' : 'Like'}</p>
@@ -180,7 +180,7 @@ const FeedCard = (props) => {
                                   <FaPencilAlt className='fill-current' />
                                   <p>Edit</p>
                                 </button>
-                                <button className='flex items-center space-x-1 rounded-full bg-transparent text-gray-500' onClick={() => handleCommentDelete(data.key)}
+                                <button className='flex items-center space-x-1 rounded-full bg-transparent text-gray-500' onClick={() => handleCommentDelete(data.id)}
                                 >
                                   <FaTrash className='fill-current' />
                                   <p>Delete</p>
