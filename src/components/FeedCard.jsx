@@ -35,16 +35,16 @@ const FeedCard = (props) => {
   return (
     <>
       {/* Card Base */}
-      <div className='flex-row container max-w-lg h-auto rounded-lg shadow-md bg-white m-2'>
+      <div className='flex-row container max-w-md sm:max-w-lg h-auto rounded-lg shadow-md bg-white m-2'>
 
         {/* Top Fourth - Avatar & User/Post Info */}
         <div className='flex pt-4 px-4 pb-2 w-full align items-center'>
 
           {/* User Avatar */}
-          <img src={avatar} className='rounded-full flex-initial max-h-14 w-14' alt='User profile' />
+          <img src={avatar} className='rounded-full flex-initial max-h-12 w-12 sm:max-h-14 sm:w-14 duration-150' alt='User profile' />
 
           {/* User & Post Info */}
-          <div className='ml-4 align-top w-full'>
+          <div className='ml-3 sm:ml-4 align-top w-full'>
 
             {/* Name & Options */}
             <div className='flex w-full items-center justify-between'>

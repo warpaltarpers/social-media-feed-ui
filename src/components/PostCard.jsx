@@ -23,10 +23,11 @@ const PostCard = (props) => {
   return (
     <>
       {/* Card Base */}
-      <div className='flex-row container w-screen sm:max-w-lg h-auto m-2 rounded-lg shadow-md divide-y divide-solid bg-white'>
+      <div className='flex-row container max-w-md sm:max-w-lg h-auto m-2 rounded-lg shadow-md divide-y divide-solid bg-white'>
+
         {/* Top Half - Avatar & Text Box */}
         <div className='flex content-start p-4'>
-          <img src={avatar} className='rounded-full flex-initial max-h-10 w-10 sm:max-h-14 sm:w-14 mb-8' alt='User profile' />
+          <img src={avatar} className='rounded-full flex-initial max-h-10 w-10 sm:max-h-14 sm:w-14 mb-8 duration-150' alt='User profile' />
           <textarea
             id='post-input'
             rows={3}
@@ -36,9 +37,10 @@ const PostCard = (props) => {
             onChange={onChange}
           />
         </div>
+
         {/* Lower Half - Photo/Video & Post Buttons */}
         <div className='flex justify-between p-2 sm:p-4'>
-          <button className='flex items-center px-3 sm:px-4 sm:py-2 text-tiny sm:text-sm space-x-2 max-h-10 rounded-full bg-gray-900 hover:bg-black text-white duration-150'>
+          <button className='flex items-center px-3 sm:px-4 sm:py-2 text-sm space-x-2 max-h-10 rounded-full bg-gray-900 hover:bg-black text-white duration-150'>
             <FaPhotoVideo />
             <p>Photo/Video</p>
           </button>
