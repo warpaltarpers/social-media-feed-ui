@@ -142,7 +142,7 @@ function App() {
           let k = uuidv4();
           return <FeedCard 
             key={k}
-            id={k}
+            id={data.id}
             name={data.name}
             location={data.location}
             timestamp={data.timestamp}
