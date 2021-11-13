@@ -3,7 +3,6 @@ import avatar from '../tpdne1.jpg'
 import PostHeader from './PostHeader';
 import LikeCommentButtons from './LikeCommentButtons';
 import CommentFeed from './CommentFeed';
-import { postsData } from '../posts';
 
 const FeedCard = (props) => {
   const [comment, setComment] = useState();
@@ -83,7 +82,7 @@ const FeedCard = (props) => {
                   ? 'flex items-center px-4 pb-4 space-x-4 bg-gray-100 rounded-b-lg'
                   : 'flex items-center px-4 pb-4 space-x-4 bg-gray-100'
               }>
-                <img src={avatar} className='rounded-full flex-initial max-h-8 w-8' alt='User profile' />
+                <img src={avatar} className='rounded-full flex-initial max-h-8 w-8 sm:max-h-10 sm:w-10' alt='User profile' />
                 <form onSubmit={handleCommentPost} className='w-full'>
                   <input
                     type="text"
@@ -102,6 +101,7 @@ const FeedCard = (props) => {
                 commentDeleteHandler={handleCommentDelete}
               />
             </div>
+
             // Drawer Closed
             : <LikeCommentButtons
               isLiked={props.isLiked}

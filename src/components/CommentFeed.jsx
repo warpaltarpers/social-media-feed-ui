@@ -23,7 +23,7 @@ const CommentFeed = (props) => {
                   ? 'flex items-center px-4 pb-4 rounded-b-lg bg-gray-100 space-x-4'
                   : 'flex items-center px-4 pb-4 bg-gray-100 space-x-4'
               }>
-                <img src={avatar} className='rounded-full flex-initial max-h-8 w-8' alt='User profile' />
+                <img src={avatar} className='rounded-full flex-initial max-h-8 w-8 sm:max-h-10 sm:w-10' alt='User profile' />
                 <div className='p-3 bg-periwinkle rounded-lg w-full'>
                   <div className='ml-2'>
                     {/* Name & Time */}
@@ -56,7 +56,7 @@ const CommentFeed = (props) => {
                         <FaPencilAlt className='fill-current' />
                         <p>Edit</p>
                       </button>
-                      <button className='flex items-center space-x-1 rounded-full bg-transparent text-gray-500' onClick={() => handleCommentDelete(data.id)}
+                      <button className='flex items-center space-x-1 rounded-full bg-transparent text-gray-500 hover:text-black duration-150' onClick={() => handleCommentDelete(data.id)}
                       >
                         <FaTrash className='fill-current' />
                         <p>Delete</p>
