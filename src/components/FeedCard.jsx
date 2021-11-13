@@ -5,21 +5,19 @@ import TimeAgo from 'timeago-react';
 
 const FeedCard = (props) => {
   const [comment, setComment] = useState();
-  const [commentList, setCommentList] = useState(props.comments);
-  const [id, setId] = useState(props.id);
 
   const onChange = e => {
     setComment(e.target.value)
   }
 
   function handlePostLike() {
-    props.handleLikeProps(id)
+    props.handleLikeProps(props.id)
   }
 
   const handleCommentPost = e => {
     e.preventDefault()
     if (comment.trim()) {
-      props.addCommentProps(comment, id)
+      props.addCommentProps(comment, props.id)
       setComment('')
     } else {
       alert('You did not enter anything. Please enter text before submitting your comment.')
@@ -27,11 +25,11 @@ const FeedCard = (props) => {
   }
 
   function handleCommentLike(cId) {
-    props.handleCommentLikeProps(id, cId)
+    props.handleCommentLikeProps(props.id, cId)
   }
 
   function handleCommentDelete(cId) {
-    props.handleCommentDeleteProps(id, cId)
+    props.handleCommentDeleteProps(props.id, cId)
   }
 
   return (
@@ -75,12 +73,12 @@ const FeedCard = (props) => {
         <div className='space-x-2 pl-4 pb-2 flex text-gray-600 text-sm'>
           <p>{props.isLiked ? props.likes + 1 : props.likes} Likes</p>
           <p>•</p>
-          <p>{commentList.length} Comments</p>
+          <p>{props.comments.length} Comments</p>
         </div>
 
         {/* Lower Fourth - Like & Comment Buttons + Feed */}
         {
-          commentList.length === 0
+          props.comments.length === 0
             // No comments
             ? <div className='flex justify-start pl-2 pb-3 bg-gray-100 rounded-b-lg'>
               {/* Like Button */}
@@ -141,7 +139,7 @@ const FeedCard = (props) => {
               {/* Comment Feed */}
               <div>
                 {
-                  commentList.map((data) => {
+                  props.comments.map((data) => {
                     return (
                       <>
                         <div className='flex items-center px-4 pb-4 rounded-b-lg bg-gray-100 space-x-4'>
