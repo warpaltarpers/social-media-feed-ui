@@ -27,7 +27,7 @@ const PostCard = (props) => {
 
         {/* Top Half - Avatar & Text Box */}
         <div className='flex content-start p-4'>
-          <img src={avatar} className='rounded-full flex-initial max-h-10 w-10 sm:max-h-14 sm:w-14 mb-8 duration-150' alt='User profile' />
+          <img src={avatar} className='rounded-full flex-initial max-h-12 w-12 sm:max-h-14 sm:w-14 mb-8 duration-150' alt='User profile' />
           <textarea
             id='post-input'
             rows={3}
