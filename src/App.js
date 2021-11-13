@@ -139,9 +139,8 @@ function App() {
       />
       {
         posts.map((data) => {
-          let k = uuidv4();
           return <FeedCard 
-            key={k}
+            key={uuidv4()}
             id={data.id}
             name={data.name}
             location={data.location}
