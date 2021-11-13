@@ -144,7 +144,7 @@ const FeedCard = (props) => {
                       <>
                         <div className='flex items-center px-4 pb-4 rounded-b-lg bg-gray-100 space-x-4'>
                           <img src={avatar} className='rounded-full flex-initial max-h-8 w-8' alt='User profile' />
-                          <div className='p-3 bg-periwinkle rounded-md w-full'>
+                          <div className='p-3 bg-periwinkle rounded-lg w-full'>
                             <div className='ml-2'>
                               {/* Name & Time */}
                               <div className='flex w-full justify-between'>
